@@ -1,0 +1,14 @@
+Package: MBSGS
+Type: Package
+Title: Multivariate Bayesian Sparse Group Selection with Spike and Slab
+Version: 1.0.0
+Author: Benoit Liquet, Matthew Sutton
+Maintainer: Benoit Liquet <benoit.liquet@qut.edu.au>
+Imports: MCMCpack, MASS, mgcv, mnormt, truncnorm
+Description: An implementation of a Bayesian sparse group model using spike and slab priors in a regression context. It is designed for regression with a multivariate response variable, but also provides an implementation for univariate response.
+License: GPL (>= 2.0)
+Encoding: UTF-8
+NeedsCompilation: no
+Packaged: 2016-08-25 23:05:37 UTC; liquetwe
+Repository: CRAN
+Date/Publication: 2016-08-27 00:33:23
