@@ -396,7 +396,7 @@ BGLSS_EM_lambda = function(Y, X, num_update = 100, niter = 100, group_size, a=1,
 }
 
 
-MBGLSS_EM_lambda = function(Y, X, num_update = 100, niter = 100, group_size, a=1, b=1,
+MBGLSS_EM_lambda = function(k,Y, X, num_update = 100, niter = 100, group_size, a=1, b=1,
                             verbose = FALSE, output=1, pi_prior=TRUE, pi=0.5 , d=3,option.update="global")
 {
 
@@ -406,9 +406,7 @@ MBGLSS_EM_lambda = function(Y, X, num_update = 100, niter = 100, group_size, a=1
   n = dim(Y)[1]
   q = dim(Y)[2]
   p = dim(X)[2]
-  ###Multivariate linear model
-  model <- lm(Y~X)
-  k <- min(apply(model$residuals,2,var))
+  
   Q = k*diag(q)
   ngroup = length(group_size)
   # Initialize parameters
@@ -544,7 +542,7 @@ MBGLSS_EM_lambda = function(Y, X, num_update = 100, niter = 100, group_size, a=1
 }
 
 
-MBSGSSS_EM_t = function(Y, X, group_size, niter = 100, num_update = 100, pi0 = 0.5, pi1 = 0.5,
+MBSGSSS_EM_t = function(k,Y, X, group_size, niter = 100, num_update = 100, pi0 = 0.5, pi1 = 0.5,
                         alpha = 1e-1, gamma = 1e-1, a1 = 1, a2 = 1,
                         c1 = 1, c2 = 1, pi_prior = TRUE, t = 1,d=3)
 {
@@ -554,9 +552,7 @@ MBSGSSS_EM_t = function(Y, X, group_size, niter = 100, num_update = 100, pi0 = 0
   n = dim(Y)[1]
   q = dim(Y)[2]
   p = dim(X)[2]
-  ###Multivariate linear model
-  model <- lm(Y~X)
-  k <- min(apply(model$residuals,2,var))
+  
   Q = k*diag(q)
   ngroup = length(group_size)
   # Initialize parameters

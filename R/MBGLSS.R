@@ -8,9 +8,24 @@ MBGLSS = function(Y, X, niter = 10000, burnin = 5000, group_size, a=1, b=1,num_u
   n = dim(Y)[1]
   q = dim(Y)[2]
   p = dim(X)[2]
+  
   ###Multivariate linear model
-  model <- lm(Y~X)
-  k <- min(apply(model$residuals,2,var))
+  if(p<n){
+	model <- lm(Y~X)
+	k <- mean(apply(model$residuals,2,var))}else{
+	var.res <- NULL
+	for(l in 1:q){
+  	mydata <- data.frame(y=Y[,l],X)
+  	min.model <- lm(y~-1,data=mydata)
+  	formula.model <- formula(lm(y~0+.,data=mydata))
+  	model <- stepAIC(min.model,direction='forward',scope=formula.model,steps=n-1,trace=FALSE)
+  	var.res <- c(var.res,var(residuals(model)))	
+}
+	k <- mean(var.res)
+	}
+  
+  
+  
   Q = k*diag(q)
   ngroup = length(group_size)
   # Initialize parameters
@@ -26,7 +41,7 @@ MBGLSS = function(Y, X, niter = 10000, burnin = 5000, group_size, a=1, b=1,num_u
   # Compute lambda2 via EM         #
   ##################################
   ### TO DO UPDATE of LAMBDA
-  fit_for_lambda2 = MBGLSS_EM_lambda(Y, X,num_update = num_update, niter = niter.update, group_size = group_size,option.update=option.update)
+  fit_for_lambda2 = MBGLSS_EM_lambda(k,Y, X,num_update = num_update, niter = niter.update, group_size = group_size,option.update=option.update)
 
   lambda2 = apply(fit_for_lambda2$lambda2_path,2,tail,1)
 

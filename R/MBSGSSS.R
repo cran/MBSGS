@@ -11,8 +11,22 @@ MBSGSSS = function(Y, X, group_size, pi0 = 0.5, pi1 = 0.5, a1 = 1, a2 = 1,
   q = dim(Y)[2]
   p = dim(X)[2]
   ###Multivariate linear model
-  model <- lm(Y~X)
-  k <- min(apply(model$residuals,2,var))
+  
+  if(p<n){
+	model <- lm(Y~X)
+	k <- mean(apply(model$residuals,2,var))}else{
+	var.res <- NULL
+	for(l in 1:q){
+  	mydata <- data.frame(y=Y[,l],X)
+  	min.model <- lm(y~-1,data=mydata)
+  	formula.model <- formula(lm(y~0+.,data=mydata))
+  	model <- stepAIC(min.model,direction='forward',scope=formula.model,steps=n-1,trace=FALSE)
+  	var.res <- c(var.res,var(residuals(model)))	
+}
+	k <- mean(var.res)
+	}
+  
+  
   Q = k*diag(q)
   ngroup = length(group_size)
   # Initialize parameters
@@ -41,7 +55,7 @@ MBSGSSS = function(Y, X, group_size, pi0 = 0.5, pi1 = 0.5, a1 = 1, a2 = 1,
   ###############################
   # EM for t #
   ############
-  fit_for_t =MBSGSSS_EM_t(Y, X, group_size=group_size,num_update = num_update, niter=niter.update)
+  fit_for_t =MBSGSSS_EM_t(k,Y, X, group_size=group_size,num_update = num_update, niter=niter.update)
   t = tail(fit_for_t$t_path, 1)
   #t <- 0.7940479
   #print(t)
