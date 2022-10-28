@@ -231,7 +231,7 @@ BSGSSS_EM_t = function(Y, X, group_size, niter = 100, num_update = 100, pi0 = 0.
       }
 
       # Update s2
-      s2 = rinvgamma(1, shape = 1 + n_nzt/2, scale = t + sum(tau)/2)
+      s2 = rinvgamma(1, shape = 1 + n_nzt/2, scale = t + sum(tau^2)/2)
       s2_vec[iter] = s2
 
     }
@@ -738,7 +738,7 @@ MBSGSSS_EM_t = function(k,Y, X, group_size, niter = 100, num_update = 100, pi0 =
       }
 
       # Update s2
-      s2 = rinvgamma(1, shape = 1 + n_nzt/2, scale = t + sum(tau)/2)
+      s2 = rinvgamma(1, shape = 1 + n_nzt/2, scale = t + sum(tau^2)/2)
       s2_vec[iter] = s2
 
     }
