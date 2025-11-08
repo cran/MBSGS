@@ -4,7 +4,6 @@
 Bayesian Group Lasso with Spike and Slab prior
 }
 \description{
-Run a gibbs sampler for a Bayesian group lasso model with spike and slab prior. This function is designed for an univariate response model and when the design matrix has a group structur.
 Run a gibbs sampler for a Bayesian group lasso model with spike and slab prior. This function is designed for an univariate response model and when the design matrix has a group structure.
 }
 \usage{
@@ -48,8 +47,7 @@ option.update = "global", lambda2_update = NULL)
 \references{
 B. Liquet, K. Mengersen, A. Pettitt and M. Sutton. (2016). Bayesian Variable Selection Regression Of Multivariate Responses For Group Data. \emph{Submitted in Bayesian Analysis}.
 
-Xu, X. and Ghosh, M. (2015). Bayesian Variable Selection and Estimation for Group Lasso.  \emph{Bayesian Analysis}, 10(4): 909–936.
-
+Xu, X. and Ghosh, M. (2015). Bayesian Variable Selection and Estimation for Group Lasso.  \emph{Bayesian Analysis}, 10(4): 909-936.
 }
 \author{
 Benoit Liquet, Matthew Sutton and Xiaofan Xu.

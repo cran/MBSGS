@@ -43,7 +43,7 @@ pi_prior = TRUE)
 \references{
 B. Liquet, K. Mengersen, A. Pettitt and M. Sutton. (2016). Bayesian Variable Selection Regression Of Multivariate Responses For Group Data. \emph{Submitted in Bayesian Analysis}.
 
-Xu, X. and Ghosh, M. (2015). Bayesian Variable Selection and Estimation for Group Lasso.  \emph{Bayesian Analysis}, 10(4): 909–936.
+Xu, X. and Ghosh, M. (2015). Bayesian Variable Selection and Estimation for Group Lasso.  \emph{Bayesian Analysis}, 10(4): 909-936.
 
 }
 \author{
